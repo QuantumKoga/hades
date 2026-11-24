@@ -27,76 +27,27 @@ Auditable infrastructure and minimal reliance on opaque services.
 
 ### 2.1 Core devices and services
 
-  -----------------------------------------------------------------------
-  Name              Role / mythology  Function          Status
-  ----------------- ----------------- ----------------- -----------------
-  **HADES**         The realm         Domain and        In use
-                                      umbrella name for 
-                                      the entire        
-                                      homelab           
+The names in HADES follow the mythology of the underworld. Each name
+identifies a distinct part of the infrastructure.
 
-  **Cerberus**      Guardian at the   CWWK firewall     Deployed
-                    gates of Hades    appliance running 
-                                      pfSense CE;       
-                                      routing,          
-                                      segmentation, VPN 
-                                      termination,      
-                                      firewall          
-                                      enforcement       
+| Component | Mythological role | Function and status |
+|---|---|---|
+| **HADES** | The realm; the complete underworld. | Umbrella name for the homelab, its infrastructure, services, and internal domain. **In use.** |
+| **Cerberus** | Guardian at the gates of Hades. | CWWK firewall appliance running pfSense CE. Handles routing, network segmentation, VPN termination, and firewall enforcement. Hardware: Intel N100, six Intel i226-V 2.5 GbE interfaces, 8 GB DDR5 RAM, and 128 GB SSD. **Deployed.** |
+| **Minos** | Judge of the underworld. | AI server running Ollama, llama.cpp, Open WebUI, SearXNG, and FastAPI. **Deployed; software stack is evolving.** |
+| **Styx** | The river connecting the realms. | Managed switch planned to expand the number of wired connections beyond the physical ports available on Cerberus. **Planned.** |
+| **Charon** | Ferries users into Hades. | GL.iNet GL-AX1800 access point running a full OpenWrt configuration. Receives VLANs from Cerberus and connects wireless clients to the appropriate networks. **Deployed.** |
+| **Persephone** | Keeper of the household in Hades. | Home Assistant instance responsible for smart-home automation and control. **Planned for the separate Proxmox server; deployment status to be verified.** |
+| **Orpheus** | The one who crosses the boundary between worlds. | Website container; the public face of HADES and its communication point with the outside world. **Planned for the separate Proxmox server; deployment status to be verified.** |
+| **Atlas** | The Titan who bears the heavens. | NAS and private cloud for data, archives, and backups. **Planned for the separate Proxmox server; deployment status to be verified.** |
+| **Tartarus** | The deepest abyss. | Wazuh and Zabbix stack for centralized monitoring, log collection, incident analysis, and threat detection across the infrastructure. **Planned for the separate Proxmox server; deployment status to be verified.** |
 
-  **Minos**         Judge of the      AI server:        Deployed /
-                    underworld        Ollama,           evolving
-                                      llama.cpp, Open   
-                                      WebUI, SearXNG,   
-                                      FastAPI           
-
-  **Styx**          The river         Managed switch to Planned
-                    connecting realms expand            
-                                      connectivity      
-                                      beyond the        
-                                      physical ports on 
-                                      Cerberus          
-
-  **Charon**        Ferries users     GL.iNet GL-AX1800 Deployed
-                    into Hades        access point,     
-                                      fully configured  
-                                      with OpenWrt;     
-                                      receives VLANs    
-                                      from Cerberus and 
-                                      connects wireless 
-                                      clients to them   
-
-  **Persephone**    Keeper of the     Home Assistant;   Planned on
-                    household         manages the smart separate Proxmox
-                                      home              server / verify
-                                                        deployment
-
-  **Orpheus**       Crosses the       Website           Planned on
-                    boundary between  container; public separate Proxmox
-                    worlds            face of HADES and server / verify
-                                      communication     deployment
-                                      point with the    
-                                      outside world     
-
-  **Atlas**         Titan bearing the NAS and private   Planned on
-                    heavens           cloud for data,   separate Proxmox
-                                      archives, and     server / verify
-                                      backups           deployment
-
-  **Tartarus**      The deepest abyss Wazuh and Zabbix; Planned on
-                                      centralized logs, separate Proxmox
-                                      monitoring,       server / verify
-                                      incident          deployment
-                                      analysis, and     
-                                      threat detection  
-  -----------------------------------------------------------------------
+**Charon design note:** Charon is an access point, not the primary
+router. Cerberus provides the VLAN-backed networks; Charon maps wireless
+clients into the appropriate VLAN.
 
 **Cerberus hardware:** CWWK appliance based on Intel N100, six Intel
 i226-V 2.5 GbE interfaces, 8 GB DDR5 RAM, and 128 GB SSD.
-
-**Charon design:** Charon is an access point, not the primary router.
-Cerberus provides the VLAN-backed networks; Charon maps wireless users
-into the appropriate VLAN.
 
 ### 2.2 Separate Proxmox server
 
