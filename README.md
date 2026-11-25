@@ -24,7 +24,8 @@ users. - Centralized monitoring, logging, and threat detection. -
 Auditable infrastructure and minimal reliance on opaque services.
 
 ## 2. Infrastructure components
-
+hades-network.png
+![Architecture overview](images/hades-network.png)
 ### 2.1 Core devices and services
 
 The names in HADES follow the mythology of the underworld. Each name
